@@ -2,7 +2,7 @@ import React from 'react'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard Details</div>
+    <div>Dashboard update after pr is merge to main</div>
   )
 }
 
