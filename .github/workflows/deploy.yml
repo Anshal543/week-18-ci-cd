@@ -45,7 +45,7 @@ jobs:
          username: ${{ secrets.EC2_USERNAME }}
          key: ${{ secrets.EC2_SSH_KEY }}
          script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/cicd-week-18:latest
-            docker stop mynextappcicd || true
-            docker rm mynextappcicd || true
-            docker run -d -p 3005:3000 --name mynextappcicd ${{ secrets.DOCKER_USERNAME }}/cicd-week-18:latest
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/cicd-week-18:latest
+            sudo docker stop mynextappcicd || true
+            sudo docker rm mynextappcicd || true
+            sudo docker run -d -p 3005:3000 --name mynextappcicd ${{ secrets.DOCKER_USERNAME }}/cicd-week-18:latest
