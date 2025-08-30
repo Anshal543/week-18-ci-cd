@@ -37,3 +37,15 @@ jobs:
         run: |
           docker pull ${{ secrets.DOCKER_USERNAME }}/cicd-week-18:latest
           docker images ${{ secrets.DOCKER_USERNAME }}/cicd-week-18
+    
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+         host: ${{ secrets.EC2_HOST }}
+         username: ${{ secrets.EC2_USERNAME }}
+         key: ${{ secrets.EC2_SSH_KEY }}
+         script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/cicd-week-18:latest
+            docker stop mynextappcicd || true
+            docker rm mynextappcicd || true
+            docker run -d -p 3005:3000 --name mynextappcicd ${{ secrets.DOCKER_USERNAME }}/cicd-week-18:latest
